@@ -109,7 +109,7 @@ class date
 
 $date = new date();
 
-$openPrice = 350;//$date->openPrice();
+$openPrice = $date->openPrice();
 
 $location = $date->getSpots($openPrice,$spots);
 
