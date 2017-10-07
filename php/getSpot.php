@@ -11,10 +11,10 @@ include "./spots.php";
 
 class date
 {
+    public $formPrice;
 //    讲十进制所有位数相加
     public function addAllNum($string)
     {
-
         $result = 0;
         $len = strlen($string);
         for ($i = 0; $i < $len; $i++) {
@@ -23,14 +23,26 @@ class date
         };
         return $result;
     }
+
 //讲行号和列号缩小到实际范围
     public function form($size, $num)
     {
-        for (; $num > $size;) {
-            $num = $num / 2;
-        }
-        return intval($num);
+//        echo "before:".$num."<br>";
+//        echo 'size is'.$size."<br>";
+//        for (; $num > $size;) {
+            $num = $num % $size;//rand(0,9);
+//        }
+//        echo "after:".$num."<br>";
+        return $num;
     }
+//获取一个当天不变的随机数
+//public function getRand($string){
+//        $rand = hexdec(md5($string));
+//        $rand = $this->addAllNum($rand);
+//        $rand = $this->addAllNum($rand);
+//        $rand = $this->addAllNum($rand);
+//        return $rand;
+//}
 //获取腾讯开盘价
     public function openPrice()
     {
@@ -44,6 +56,7 @@ class date
         curl_close($ch);
         $data = json_decode($output);
         $openPrice = $data->result[0]->data->openpri;
+        $this->formPrice = $data->result[0]->data->formpri;
         $result = [
             'resultcode' => $data->resultcode,
             'reason' => $data->reason,
@@ -51,6 +64,7 @@ class date
         ];
         return json_encode($result);
     }
+
 //获取聚会地点A，B
     public function getSpots($openprice, $spots)
     {
@@ -66,6 +80,8 @@ class date
         //将所有数字加起来作为行号
         $rowA = $this->addAllNum($rowA);
         $rowB = $this->addAllNum($rowB);
+        $columnA = $this->addAllNum($columnA);
+        $columnB = $this->addAllNum($columnB);
 
         //最多只有19行
         $totalRows = count($spots);
@@ -83,14 +99,16 @@ class date
         $secondColumn = $this->form($totalColumnB, $columnB);
 
         $spots = [
-            'first_choise' =>  ['column'=>$firstColumn, 'row'=>$firstRow],
-            'second_choise' => ['column'=>$secondColumn, 'row'=>$secondRow]
+            'first_choise' => ['column' => $firstColumn, 'row' => $firstRow],
+            'second_choise' => ['column' => $secondColumn, 'row' => $secondRow]
         ];
 
         return json_encode($spots);
     }
+
 //根据聚会地点A，B输出二维数组，方便前端遍历输出
-    public function setMatrix($spots=[],$location){
+    public function setMatrix($spots = [], $location)
+    {
         $spots = $spots;
         $location = json_decode($location);
 
@@ -100,8 +118,8 @@ class date
         $columnB = $location->second_choise->column - 1;
 
 //        将相应位置的值由0改为1
-        $spots[$rowA] [$columnA]= 1;
-        $spots[$rowB] [$columnB]= 1;
+        $spots[$rowA] [$columnA] = 1;
+        $spots[$rowB] [$columnB] = 1;
 
         return $spots;
     }
@@ -109,17 +127,19 @@ class date
 
 $date = new date();
 
-$openPrice = $date->openPrice();
+$openPrice = json_decode($date->openPrice())->openprice;
 
-$location = $date->getSpots($openPrice,$spots);
 
-$martix = $date->setMatrix($spots,$location);
+
+$location = $date->getSpots($openPrice, $spots);
+
+$martix = $date->setMatrix($spots, $location);
 
 $result = [
     'openPrice' => $openPrice,
-    'date'      => date("Y.m.d"),
-    'location'      => $location,
-    'martix'    => $martix
+    'date' => date("Y.m.d"),
+    'location' => $location,
+    'martix' => $martix
 ];
 echo json_encode($result);
 
