@@ -19,7 +19,7 @@
         <entry file="file://$PROJECT_DIR$/date.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="456">
-              <caret line="19" column="23" lean-forward="true" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
+              <caret line="19" column="23" lean-forward="false" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
               <folding>
                 <marker date="1507394994850" expanded="true" signature="1800:1819" ph="..." />
                 <marker date="1507394994850" expanded="true" signature="1800:1838" ph="..." />
@@ -49,7 +49,7 @@
         <entry file="file://$PROJECT_DIR$/php/getSpot.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="2376">
-              <caret line="142" column="2" lean-forward="true" selection-start-line="142" selection-start-column="2" selection-end-line="142" selection-end-column="2" />
+              <caret line="142" column="2" lean-forward="false" selection-start-line="142" selection-start-column="2" selection-end-line="142" selection-end-column="2" />
               <folding>
                 <element signature="n#addAllNum#0;n#date#0;n#!!top" expanded="false" />
                 <element signature="n#openPrice#0;n#date#0;n#!!top" expanded="false" />
@@ -191,12 +191,12 @@
       <workItem from="1507370637943" duration="5231000" />
       <workItem from="1507375986716" duration="325000" />
       <workItem from="1507376541480" duration="3029000" />
-      <workItem from="1507392284027" duration="2770000" />
+      <workItem from="1507392284027" duration="2856000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27348000" />
+    <option name="totallyTimeSpent" value="27434000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1098" extended-state="6" />
@@ -411,7 +411,7 @@
     <entry file="file://$PROJECT_DIR$/php/getSpot.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2376">
-          <caret line="142" column="2" lean-forward="true" selection-start-line="142" selection-start-column="2" selection-end-line="142" selection-end-column="2" />
+          <caret line="142" column="2" lean-forward="false" selection-start-line="142" selection-start-column="2" selection-end-line="142" selection-end-column="2" />
           <folding>
             <element signature="n#addAllNum#0;n#date#0;n#!!top" expanded="false" />
             <element signature="n#openPrice#0;n#date#0;n#!!top" expanded="false" />
@@ -423,7 +423,7 @@
     <entry file="file://$PROJECT_DIR$/date.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="456">
-          <caret line="19" column="23" lean-forward="true" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
+          <caret line="19" column="23" lean-forward="false" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
           <folding>
             <marker date="1507394994850" expanded="true" signature="1800:1819" ph="..." />
             <marker date="1507394994850" expanded="true" signature="1800:1838" ph="..." />
