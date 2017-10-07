@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ACCP非法聚会地点</title>
+    <script src="./js/jquery.min.js"></script>
+    <p id="title"></p>
+    <p id="spot"></p>
+</head>
+<body>
+<button id="location">CLICK</button>
+<script type="text/javascript">
+    $('#location').click(function () {
+        $.ajax({
+            type: "GET",
+            url: "./php/getSpot.php",
+            dataType: "json",
+            success: function(res){
+
+               var openprice = res.openPrice;
+               var date = res.date;
+               var location = JSON.parse(res.location)
+               var choiceA = location.first_choise;
+               var choiceB= location.second_choise;
+               var martix = res.martix;
+//               console.log(res);
+               console.log(choiceA);
+//               console.log(choiceB);
+//               console.log(martix);
+
+                $("#title").append('<text>'+date+'开盘价是'+openprice+'</text><br><text>首选位置：第'+choiceA.row+'行，第'+choiceA.column+'列</text><br><text>备选位置：第'+choiceB.row+'行，第'+choiceB.column+'列</text>');
+
+                $.each(martix, function (index, item) {
+                    $("#spot").append('<text style="margin:auto 5px auto 5px">'+(index+1)+'</text>');
+                    //输出0...aaa,bbb,ccc  1...ddd,eee,fff  2...ggg,hhh,iii   这时的index为数组下标,item相当于取这二维数组中的每一个数组
+                    $.each(item, function (index, itemobj) {
+                        if(itemobj == 0){
+                            $("#spot").append('<img src="./img/desk.png"/>');
+                        }else{
+                            $("#spot").append('<img src="./img/deskOn.png"/>');
+                        }
+                    });
+                    $("#spot").append('<br>');
+                });
+            }
+        });
+    })
+</script>
+</body>
+
+</html>
